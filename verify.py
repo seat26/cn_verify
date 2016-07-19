@@ -86,7 +86,11 @@ def verify9(arrange):
     pre_addr = pre_e.Addr
     pre_order = pre_e.Order_id
     pre_departure = 0
-    amount = ds_order_df[ds_order_df["Order_id"]==pre_order].Num.values[0]
+    if(len(ds_order_df[ds_order_df["Order_id"]==pre_order].Num.values)!=0):
+        amount = ds_order_df[ds_order_df["Order_id"]==pre_order].Num.values[0]
+    else:
+        amount = o2o_order_df[o2o_order_df["Order_id"]==pre_order].Num.values[0]
+        pre_departure=time2min(o2o_order_df[o2o_order_df["Order_id"]==pre_order].Pickup_time.values[0]);
     new_mix_arrange_df = pd.DataFrame({"Courier_id": [arrange.iloc[0].Courier_id], "Addr": [pre_addr], "Arrival_time": [0], "Departure": [0], "Amount": [amount],  "Order_id": [pre_order]})
     for i in range(1, len(mix_arrange_df)):
         cur_e = mix_arrange_df.iloc[i]
