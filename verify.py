@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-sub_df = pd.read_csv("cn_sub.csv", names=["Courier_id", "Addr", "Arrival_time", "Departure", "Amount", "Order_id"])
+sub_df = pd.read_csv("cn_sub.csv", names=["Courier_id", "Addr", "Arrival_time", "Departure", "Amount", "Order_id"],header=0)
 
 SPEED = 15*1000.0/60
 site_df = pd.read_csv("1.csv")
